@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+</head>
+<body>
+<h1>Lịch sử giỏ hàng</h1>
+<ul>
+    <% if (cart.length > 0) { %>
+        <% cart.forEach(item => { %>
+            <li>Sản phẩm: <%= item %></li>
+        <% }) %>
+    <% } else { %>
+        <li>Giỏ hàng trống</li>
+    <% } %>
+</ul>
+<a href="/product"><button>Tiếp tục mua sắm</button></a>
+</body>
+</html>

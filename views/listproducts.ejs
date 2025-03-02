@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh sách sản phẩm</title>
+  <script>
+    async function addToCart(productId) {
+      try {
+        const response = await fetch('/cart/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: productId })
+        });
+        const result = await response.json();
+        alert(result.message);
+      } catch (error) {
+        console.error('Lỗi:', error);
+        alert('Có lỗi xảy ra!');
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+<a href="/cart"><button>Xem giỏ hàng</button></a>
+<ul style="padding: 20px">
+  <% products.forEach(product => { %>
+    <li>
+      <strong><%= product.name %></strong> -
+      <%= product.price %> VND
+      <p><%= product.description %></p>
+      <a href="/product/<%= product.id %>"><button>Chi tiết</button></a>
+      <button onclick="addToCart('<%= product.name   %>')">Thêm vào giỏ hàng</button>
+    </li>
+  <br>
+  <hr>
+  <% }) %>
+</ul>
+</body>
+</html>
